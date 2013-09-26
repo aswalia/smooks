@@ -475,11 +475,9 @@ public class EDIParser implements XMLReader {
             return;
         }
 
-        SegmentGroup expectedSegmentGroup = null;
-        int minOccurs = 0;
         while (segmentMappingIndex < expectedSegments.size() && segmentReader.hasCurrentSegment()) {
-            expectedSegmentGroup = expectedSegments.get(segmentMappingIndex);
-            minOccurs = expectedSegmentGroup.getMinOccurs();
+            SegmentGroup expectedSegmentGroup = expectedSegments.get(segmentMappingIndex);
+            int minOccurs = expectedSegmentGroup.getMinOccurs();
             int maxOccurs = expectedSegmentGroup.getMaxOccurs();
            
             // A negative max value indicates an unbound max....

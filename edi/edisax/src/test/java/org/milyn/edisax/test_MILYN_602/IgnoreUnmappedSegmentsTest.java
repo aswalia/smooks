@@ -68,7 +68,7 @@ public class IgnoreUnmappedSegmentsTest extends TestCase {
         Assert.assertFalse("Attribute should be false", msg1.getEdimap().isIgnoreUnmappedSegments());
     }
 
-    // verify that can ignore unmapped in the beginning
+    // verify that a mapping model of only optional segments can ignore everything - basically anything goes
     public void testIgnoreAllUnmapped() throws IOException, SAXException, EDIConfigurationException {
         msg1 = EDIParser.parseMappingModel(getClass().getResourceAsStream("ignoreUnmappedSegments_all_optional.xml"));
         parseEdiMessage("IgnoreAllUnmapped.txt");
@@ -101,6 +101,7 @@ public class IgnoreUnmappedSegmentsTest extends TestCase {
         verifyParsedEdiMessage();
     }
 
+    // ------------ IGNORED TEST CASES ---------------------
     // verify that if file only contains mapped but not valid (e.g. in wrong order) an exception is thrown
     // fails due to defect -- see below test case 
     public void ignore_testNoUnmappedInvalid() throws IOException, SAXException, EDIConfigurationException {
@@ -122,6 +123,7 @@ public class IgnoreUnmappedSegmentsTest extends TestCase {
             // ignore verifing that the exception content is correct
         }
     }
+    //-----------------------------------------------------------
 
     // verify that if file only contains unmapped an exception is thrown
     public void testNoMapped() throws IOException, SAXException, EDIConfigurationException {
